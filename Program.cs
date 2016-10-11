@@ -1,24 +1,28 @@
-﻿namespace SQLSaturday
+﻿namespace SignalRDemo
 {
     using System.Data.SqlClient;
     using System.IO;
     using System.Linq;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
 
     public class Program
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseStartup<Startup>()
+            var config = new ConfigurationBuilder()
+                .AddCommandLine(args)
+                .AddEnvironmentVariables(prefix: "ASPNETCORE_")
                 .Build();
 
+            var host = new WebHostBuilder()
+                .UseConfiguration(config)
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
             
-            var dbContext = new SQLSaturdayContext();
-            
-            var allUsers = dbContext.Users.ToList();
             host.Run();
         }
     }

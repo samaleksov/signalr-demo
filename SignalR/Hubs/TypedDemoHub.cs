@@ -1,9 +1,8 @@
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
-
-namespace SQLSaturday.SignalR
+namespace SignalRDemo.SignalR
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.SignalR;
     public class TypedDemoHub : Hub<IClient>
     {
         private static int _invokeCount = 0;

@@ -1,8 +1,7 @@
-using System.Threading;
-using Microsoft.AspNetCore.SignalR;
-
-namespace SQLSaturday.SignalR
+namespace SignalRDemo.SignalR
 {
+    using System.Threading;
+    using Microsoft.AspNetCore.SignalR;
     public class MessageLoops : Hub
     {
         public string JoinGroup(string connectionId, string groupName)

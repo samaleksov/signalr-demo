@@ -1,8 +1,12 @@
-namespace SQLSaturday
+namespace SignalRDemo
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class User
     {
-        public int UserId { get; set; }
+        [Key]
+        public string UserId { get; set; }
         public string Username { get;set; }
         public string Email { get;set; }
     }

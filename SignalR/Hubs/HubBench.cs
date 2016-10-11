@@ -1,10 +1,9 @@
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
-
-namespace SQLSaturday.SignalR
+namespace SignalRDemo.SignalR
 {
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.SignalR;
     public class HubBench : Hub
     {
         public static int Connections;

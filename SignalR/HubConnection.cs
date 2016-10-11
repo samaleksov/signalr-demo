@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Concurrent;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.SignalR;
-using Newtonsoft.Json;
-
-namespace SQLSaturday.SignalR
+namespace SignalRDemo.SignalR
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.SignalR;
+    using Newtonsoft.Json;
     public class HubConnection : PersistentConnection
     {
         private static readonly ConcurrentDictionary<string, string> _users = new ConcurrentDictionary<string, string>();
