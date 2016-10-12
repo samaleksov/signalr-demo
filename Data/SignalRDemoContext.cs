@@ -6,6 +6,7 @@ namespace SignalRDemo
     public class SignalRDemoContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Counter> Counters { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

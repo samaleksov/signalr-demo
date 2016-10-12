@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using AutoMapper;
     using System.Linq;
+    using System;
 
     [Route("api/[controller]")]
     public class UsersController : Controller
@@ -31,6 +32,7 @@
         [HttpPost]
         public void Post([FromBody]UserModel user)
         {
+            user.UserId = Guid.NewGuid().ToString();
             this.dbContext.Users.Add(this.mapper.Map<User>(user));
             this.dbContext.SaveChanges();
         }

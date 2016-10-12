@@ -8,9 +8,10 @@ using SignalRDemo;
 namespace NETCoreDemo.Migrations
 {
     [DbContext(typeof(SignalRDemoContext))]
-    partial class SignalRDemoContextModelSnapshot : ModelSnapshot
+    [Migration("20161011144252_add_counters")]
+    partial class add_counters
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

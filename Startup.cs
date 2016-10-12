@@ -44,6 +44,16 @@ namespace SignalRDemo
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            
+            app.UseCors((policyBuilder) => 
+            {
+                policyBuilder
+                    .WithOrigins("http://localhost:3333")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+            
             app.UseFileServer();
             app.UseWebSockets();
             app.UseMvc();
