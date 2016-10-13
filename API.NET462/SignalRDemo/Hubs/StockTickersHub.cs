@@ -12,11 +12,5 @@ namespace SignalRDemo.Hubs
         public StockTickersHub()
         {
         }
-        
-        public void JoinGroup(string groupName)
-        {
-            Groups.Add(Context.ConnectionId, groupName);
-            Clients.Caller.groupAdded();
-        }
     }
 }

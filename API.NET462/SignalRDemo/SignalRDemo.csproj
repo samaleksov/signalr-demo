@@ -265,11 +265,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\NavigationHub.cs" />
     <Compile Include="Hubs\StockTickersHub.cs" />
     <Compile Include="Hubs\CountersHub.cs" />
-    <Compile Include="Hubs\HubBench.cs" />
-    <Compile Include="Hubs\MessageLoops.cs" />
-    <Compile Include="Hubs\TypedDemoHub.cs" />
     <Compile Include="MappingProfiles\DomainProfile.cs" />
     <Compile Include="Migrations\201610122129589_Add_Stocks.cs" />
     <Compile Include="Migrations\201610122129589_Add_Stocks.Designer.cs">
