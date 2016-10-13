@@ -50,7 +50,7 @@ class Main  extends React.Component {
 				title: "Stock Ticker",
 				description: "Use SQL Dependency to get notified about stock price changes",
 				color: "neutral-2",
-				link: "/"
+				link: "/stock-tickers"
 			},
 			{
 				id: 3,

@@ -80,6 +80,10 @@
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SqlServer, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SqlServer.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
       <Private>True</Private>
@@ -251,20 +255,33 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\StockTickersController.cs" />
     <Compile Include="Controllers\CountersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Data\SignalRDemoContext.cs" />
     <Compile Include="Domain\Counter.cs" />
+    <Compile Include="Domain\Stock.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\StockTickersHub.cs" />
     <Compile Include="Hubs\CountersHub.cs" />
     <Compile Include="Hubs\HubBench.cs" />
     <Compile Include="Hubs\MessageLoops.cs" />
     <Compile Include="Hubs\TypedDemoHub.cs" />
     <Compile Include="MappingProfiles\DomainProfile.cs" />
+    <Compile Include="Migrations\201610122129589_Add_Stocks.cs" />
+    <Compile Include="Migrations\201610122129589_Add_Stocks.Designer.cs">
+      <DependentUpon>201610122129589_Add_Stocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610122144114_Add_Stocks_OldPrice.cs" />
+    <Compile Include="Migrations\201610122144114_Add_Stocks_OldPrice.Designer.cs">
+      <DependentUpon>201610122144114_Add_Stocks_OldPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CounterModel.cs" />
+    <Compile Include="Models\StockModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -288,13 +305,20 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Providers\" />
     <Folder Include="Results\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610122129589_Add_Stocks.resx">
+      <DependentUpon>201610122129589_Add_Stocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610122144114_Add_Stocks_OldPrice.resx">
+      <DependentUpon>201610122144114_Add_Stocks_OldPrice.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

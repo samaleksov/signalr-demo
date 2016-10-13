@@ -9,8 +9,6 @@ namespace SignalRDemo.Hubs
     [HubName("counters")]
     public class CountersHub : Hub
     {
-        private static readonly TaskCompletionSource<object> _neverEndingTcs = new TaskCompletionSource<object>();
-        
         public CountersHub()
         {
         }

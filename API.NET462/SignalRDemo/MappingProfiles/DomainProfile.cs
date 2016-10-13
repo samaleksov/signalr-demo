@@ -13,6 +13,9 @@
 
             CreateMap<CounterModel, Counter>();
             CreateMap<Counter, CounterModel>();
+
+            CreateMap<StockModel, Stock>();
+            CreateMap<Stock, StockModel>();
         }
     }
 }

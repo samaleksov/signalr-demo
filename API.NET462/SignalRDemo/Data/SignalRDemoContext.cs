@@ -7,12 +7,13 @@ namespace SignalRDemo.Data
     public class SignalRDemoContext : DbContext
     {
         public SignalRDemoContext() 
-            : base(@"Server=localhost;Database=SignalRDemo;User ID=sa;Password=hell0w0rld;")
+            : base(WebApiApplication.ConnectionString)
         {
 
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Counter> Counters { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
     }
 }

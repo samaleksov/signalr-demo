@@ -34,6 +34,13 @@ export default {
 			//cb(null, Counter)
 		 	System.import( "../components/Counter").then(loadRoute(cb)).catch(errorLoading);
 		 }
+	 },
+	 {
+		 path: '/stock-tickers',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/StockTickers").then(loadRoute(cb)).catch(errorLoading);
+		 }
 	 }
 	]
 };
