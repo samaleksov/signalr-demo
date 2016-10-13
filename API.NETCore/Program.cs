@@ -18,6 +18,7 @@
             var host = new WebHostBuilder()
                 .UseConfiguration(config)
                 .UseKestrel()
+                .UseUrls("http://localhost:5001")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()

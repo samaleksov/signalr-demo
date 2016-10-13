@@ -14,7 +14,7 @@ import {renderToString} from 'react-dom/server';
 import createLocation from 'history/lib/createLocation';
 import {RouterContext, match} from 'react-router';
 import routes from './routes/routes';
-
+import { API_URL, SIGNALR_URL } from './constants'
 let app = express();
 
 app.use((req, res, next) => {
@@ -35,19 +35,19 @@ app.use((req, res, next) => {
           `<meta charset="utf-8"/>`,
           `<style>html, body, #root { height: 100%; } a { text-decoration: none !important; }'
           @-webkit-keyframes change-color {
-            0%   { background-color: red; }
+            0%   { background-color: #ff324d; }
             100% { background-color: white; }
           }
           @-moz-keyframes change-color {
-            0%   { background-color: red; }
+            0%   { background-color: #ff324d; }
             100% { background-color: white; }
           }
           @-o-keyframes change-color {
-            0%   { background-color: red; }
+            0%   { background-color: #ff324d; }
             100% { background-color: white; }
           }
           @keyframes change-color {
-            0%   { background-color: red; }
+            0%   { background-color: #ff324d; }
             100% { background-color: white; }
           }
 
@@ -59,19 +59,19 @@ app.use((req, res, next) => {
           }
 
           @-webkit-keyframes change-color-up {
-            0%   { background-color: green; }
+            0%   { background-color: #8cc800; }
             100% { background-color: white; }
           }
           @-moz-keyframes change-color-up {
-            0%   { background-color: green; }
+            0%   { background-color: #8cc800; }
             100% { background-color: white; }
           }
           @-o-keyframes change-color-up {
-            0%   { background-color: green; }
+            0%   { background-color: #8cc800; }
             100% { background-color: white; }
           }
           @keyframes change-color-up {
-            0%   { background-color: green; }
+            0%   { background-color: #8cc800; }
             100% { background-color: white; }
           }
 
@@ -116,7 +116,7 @@ app.use((req, res, next) => {
           `<div id="root"><div>${markup}</div></div>`,
 					`<script type="text/javascript" src="vendor.bundle.js" charset="utf-8"></script>`,
           `<script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.3.js"></script>`,
-          `<script src="//localhost:5000/signalr/js"></script>`,
+          `<script src="` + SIGNALR_URL + `/js"></script>`,
 					`<script type="text/javascript" src="app.bundle.js" charset="utf-8"></script>`,
         `</body>`,
       `</html>`

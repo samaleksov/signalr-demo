@@ -6,6 +6,7 @@ import Table from 'grommet/components/Table';
 import TableRow from 'grommet/components/TableRow';
 import Down from 'grommet/components/icons/base/Down';
 import Up from 'grommet/components/icons/base/Up';
+import { API_URL, SIGNALR_URL } from '../constants'
 
 class StockTickers  extends React.Component {
 	state = {
@@ -46,14 +47,14 @@ class StockTickers  extends React.Component {
 	loadData = () => {
 		$.ajax({
           method:'get',
-          url: '//localhost:5000/api/StockTickers/',
+          url: API_URL + '/api/StockTickers/',
           dataType: "json",
           contentType: "application/json; charset=utf-8"
       }).success(this.loaded);
 	}
 	componentDidMount = () => {
 		const hub = $.connection.stock;
-		$.connection.hub.url = "//localhost:5000/signalr";
+		$.connection.hub.url = SIGNALR_URL;
 		this.state.hub = hub;
 		this.state.hub.on("updateTickers", this.updateTickers.bind(this));
 		this.loadData();

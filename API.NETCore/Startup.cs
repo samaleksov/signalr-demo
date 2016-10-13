@@ -29,7 +29,11 @@ namespace SignalRDemo
                 options.Hubs.EnableDetailedErrors = true;
             });
 
-            services.AddMvc();
+            services.AddMvc()
+                    .AddJsonOptions(options =>
+                    {
+                        options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                    });
 
             Mapper.Initialize(cfg => cfg.AddProfile<DomainProfile>());
 
