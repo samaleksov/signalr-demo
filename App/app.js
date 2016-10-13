@@ -115,7 +115,7 @@ app.use((req, res, next) => {
         `<body>`,
           `<div id="root"><div>${markup}</div></div>`,
 					`<script type="text/javascript" src="vendor.bundle.js" charset="utf-8"></script>`,
-          `<script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.0.3.js"></script>`,
+          `<script src="` + API_URL + `/Scripts/jquery.signalR-2.2.1.js"></script>`,
           `<script src="` + SIGNALR_URL + `/js"></script>`,
 					`<script type="text/javascript" src="app.bundle.js" charset="utf-8"></script>`,
         `</body>`,
@@ -134,7 +134,6 @@ app.use(webpackDevMiddleware(compiler,{
 
 app.use(webpackHotMiddleware(compiler));
 
-//app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, 'wwwroot')));
+app.use(express.static(path.join(__dirname, 'public')));
 let server  = createServer(app);
 server.listen(3333);

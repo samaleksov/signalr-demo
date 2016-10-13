@@ -64,6 +64,20 @@ class Main  extends React.Component {
 				description: "Send graph changes",
 				color: "neutral-1",
 				link: "/"
+			},
+			{
+				id: 5,
+				title: "About",
+				description: "SignalR",
+				color: "neutral-3",
+				link: "about-signalr"
+			},
+			{
+				id: 6,
+				title: "Slides",
+				description: "The boring stuff",
+				color: "neutral-1",
+				link: "slides"
 			}
 		]
 	}

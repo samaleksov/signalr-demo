@@ -15,7 +15,9 @@ function errorLoading(err) {
 }
 
 function loadRoute(cb) {
-  return (module) => cb(null, module.default);
+  return (module) => {
+		cb(null, module.default);
+	}
 }
 
 export default {
@@ -40,6 +42,20 @@ export default {
 		 getComponent(location, cb) {
 			//cb(null, Counter)
 		 	System.import( "../components/StockTickers").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/about-signalr',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/About").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/slides',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/Slides").then(loadRoute(cb)).catch(errorLoading);
 		 }
 	 }
 	]
