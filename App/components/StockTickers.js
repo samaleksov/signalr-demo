@@ -96,7 +96,7 @@ class StockTickers  extends React.Component {
 							this.state.tickers.map((ticker) => {
 								const icon = ticker.Price > ticker.OldPrice ? (<Up colorIndex="ok"/>) : (<Down colorIndex="critical"/>);
 								return (
-									<span> {icon} {(ticker.Price - ticker.OldPrice).toFixed(2)} {ticker.Symbol} - {ticker.Company} </span>
+									<span key={ticker.Symbol}> {icon} {(ticker.Price - ticker.OldPrice).toFixed(2)} {ticker.Symbol} - {ticker.Company} </span>
 								)
 							})
 						}
