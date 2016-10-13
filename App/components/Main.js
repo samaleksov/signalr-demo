@@ -5,7 +5,6 @@ import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
 import Box from 'grommet/components/Box';
 import Carousel from 'grommet/components/Carousel';
-
 import { withRouter } from 'react-router'
 
 class Main  extends React.Component {
@@ -69,7 +68,8 @@ class Main  extends React.Component {
 		]
 	}
 	onSelect = (item) => {
-		this.props.router.push(item.link)
+		this.props.router.push(item.link);
+		this.props.onNavigate(item.link);
 	}
 	render () {
 		return (
