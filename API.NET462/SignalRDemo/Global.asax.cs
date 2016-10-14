@@ -30,6 +30,7 @@ namespace SignalRDemo
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             var st = StockTicker.Instance.Value;
+            var pt = DashTicker.Instance.Value;
             this.RegisterStockTickersSQLDependency();
         }
 

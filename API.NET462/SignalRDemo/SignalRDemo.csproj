@@ -97,6 +97,7 @@
       <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -265,7 +266,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\MessageHub.cs" />
     <Compile Include="Hubs\NavigationHub.cs" />
+    <Compile Include="Hubs\DashboardHub.cs" />
     <Compile Include="Hubs\StockTickersHub.cs" />
     <Compile Include="Hubs\CountersHub.cs" />
     <Compile Include="MappingProfiles\DomainProfile.cs" />
