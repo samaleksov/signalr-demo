@@ -15,7 +15,9 @@ function errorLoading(err) {
 }
 
 function loadRoute(cb) {
-  return (module) => cb(null, module.default);
+  return (module) => {
+		cb(null, module.default);
+	}
 }
 
 export default {
@@ -40,6 +42,41 @@ export default {
 		 getComponent(location, cb) {
 			//cb(null, Counter)
 		 	System.import( "../components/StockTickers").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/about-signalr',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/About").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/slides',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/Slides").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/scalability',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/Scalability").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/sqldependency',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/SQLDependency").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/dashboard',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/Dashboard").then(loadRoute(cb)).catch(errorLoading);
 		 }
 	 }
 	]

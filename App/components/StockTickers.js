@@ -38,10 +38,14 @@ class StockTickers  extends React.Component {
 		this.setState({ ...this.state, tickers: merge });
 	}
 	componentWillUnmount = () => {
-		this.state.hub.off("updateTickers", this.updateTickers.bind(this));
+		if(!!this.state.hub)
+			this.state.hub.off("updateTickers", this.updateTickers);
 	}
 	loaded = (tickers) => {
-		$.connection.hub.start();
+		if(!!this.state.hub){
+			$.connection.hub.start().done(() => {
+			})
+		}
 		this.setState({ ...this.state, tickers: tickers.sort(this.sorter), loaded: true });
 	}
 	loadData = () => {
@@ -54,9 +58,12 @@ class StockTickers  extends React.Component {
 	}
 	componentDidMount = () => {
 		const hub = $.connection.stock;
-		$.connection.hub.url = SIGNALR_URL;
-		this.state.hub = hub;
-		this.state.hub.on("updateTickers", this.updateTickers.bind(this));
+		if(!!hub)
+		{
+			$.connection.hub.url = SIGNALR_URL;
+			this.state.hub = hub;
+			hub.on("updateTickers", this.updateTickers);
+		}
 		this.loadData();
 	}
 	render () {

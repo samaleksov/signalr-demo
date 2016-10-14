@@ -56,14 +56,42 @@ class Main  extends React.Component {
 				title: "Dashboard",
 				description: "Monitor system resources",
 				color: "neutral-3",
-				link: "/"
+				link: "/dashboard"
 			},
 			{
 				id: 4,
 				title: "D3 Graph",
-				description: "Send graph changes",
+				description: "Notify graph changes",
 				color: "neutral-1",
 				link: "/"
+			},
+			{
+				id: 5,
+				title: "About",
+				description: "SignalR",
+				color: "grey-1",
+				link: "about-signalr"
+			},
+			{
+				id: 7,
+				title: "Scaleout",
+				description: "SignalR with SQL Server",
+				color: "warning",
+				link: "/scalability"
+			},
+			{
+				id: 8,
+				title: "SQLDependency",
+				description: "Use SQLDependency to listen for live data changes",
+				color: "grey-3-a",
+				link: "/sqldependency"
+			},
+			{
+				id: 6,
+				title: "Slides",
+				description: "The boring stuff",
+				color: "neutral-4-a",
+				link: "slides"
 			}
 		]
 	}
