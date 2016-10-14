@@ -14,17 +14,54 @@ import Spinning from 'grommet/components/icons/Spinning';
 
 class Slides  extends React.Component {
 	state = {
-		showNotification: false
+		showNotification: false,
+		interval: null,
+		notifications: 0,
 	}
 	carousel = null
 	closeNotification = () => {
 		this.setState({ showNotification: false })
 	}
-	keyDown (event) {
+	startPoison () {
+		const interval = setInterval(this.poisonTick, 1000);
+		this.setState({ ...this.state, interval });
+	}
+	poisonTick = () => {
+		if(this.state.interval != null)
+		{
+			let notifications = this.state.notifications + 1;
+			this.setState({ ...this.state, notifications });
+		}
+	}
+	stopPoison () {
+		clearInterval(this.state.interval)
+		const notifications = 0;
+		this.setState({ ...this.state, interval: null, notifications });
+	}
+	keyDown = (event) => {
+		 if(event.keyCode == 27)
+		 {
+	  	event.preventDefault();
+			 return false;
+		 }
 		 if(event.keyCode == 190 || event.keyCode == 78)
 		 {
 			 this.setState({ showNotification: !this.state.showNotification });
 			 event.preventDefault();
+			 return false;
+		 }
+		 if(event.keyCode == 116 || event.keyCode == 77)
+		 {
+
+			 event.preventDefault();
+			 if(this.state.interval != null)
+			 {
+				 this.stopPoison();
+			 }
+			 else
+			 {
+				 this.startPoison();
+			 }
 			 return false;
 		 }
 		 if(!!this.carousel)
@@ -44,10 +81,14 @@ class Slides  extends React.Component {
 		 }
  	}
   componentDidMount () {
-    window.document.addEventListener("keydown", this.keyDown.bind(this), false);
+    window.document.addEventListener("keydown", this.keyDown, false);
  	}
+	componentWillUnmount () {
+		window.document.removeEventListener("keydown", this.keyDown, false);
+	}
 	render () {
 		let notification = null;
+		let notifications = null;
 		const closer = (<div style={{ margin: "10px"}} onClick={ this.closeNotification }><Pulse  icon={ <Image src="/profile_picture.jpg" size="small" fit="contain" alt="Doge" /> }/></div>)
 		if(this.state.showNotification)
 		{
@@ -58,15 +99,32 @@ class Slides  extends React.Component {
 			    </Heading>
 			  </Header>
 			  <Section>
-			    <Paragraph>
 			      <h2>Wow. Good luck with the demo! Such demo! Much awesome, so amaze.</h2>
-			    </Paragraph>
 			  </Section>
 			</Layer>)
+		}
+		if(this.state.notifications !== 0)
+		{
+			notifications = Array.apply(null, {length: this.state.notifications}).map(Number.call, Number).map((number) => {
+				return (
+					(<div key={number}>
+							<Header>
+						    <Heading tag="h1">
+						      Notification from Doge
+						    </Heading>
+						  </Header>
+						  <Section>
+						      <h2>Wow. Good luck with the demo! Such demo! Much awesome, so amaze.</h2>
+						  </Section>
+						</div>)
+				)
+			})
+			notifications = (<Layer align="center" closer={ closer }> {notifications }</Layer>)
 		}
 		return (
 			<Box full={true} primary={true}>
 				{ notification }
+				{ notifications }
 				<Carousel ref={(c) => this.carousel = c} autoplay={false} persistentNav={false} >
 					<Hero colorIndex="ok">
 						<Box>
@@ -80,7 +138,7 @@ class Slides  extends React.Component {
 								Sam Aleksov
 							</h1>
 							<h3>
-								@samaleksov | samuil_aleksov@epam.com
+								@samaleksov | sam@refractiondevelopment.com
 							</h3>
 						</span>
 						<span style={{color: "White"}}>
@@ -150,7 +208,7 @@ class Slides  extends React.Component {
 						</h1>
 						<Image src="intro_architecture.png" size="large" fit="contain" alt="Architecture" />
 					</Box>
-					<Hero backgroundImage="/iStock_82972681_web.jpg">
+					<Hero backgroundImage="/coffee.jpg">
 						<h1>
 							The code
 						</h1>
@@ -165,9 +223,9 @@ class Slides  extends React.Component {
 							<h1>
 								Thank you!
 							</h1>
-							<h3>
-								<a href="https://github.com/l337h4x0r/signalr-demo">https://github.com/l337h4x0r/signalr-demo</a>
-							</h3>
+							<h1>
+								<a style={{ color: "White"}} href="https://github.com/l337h4x0r/signalr-demo">https://github.com/l337h4x0r/signalr-demo</a>
+							</h1>
 						</span>
 					</Hero>
 				</Carousel>

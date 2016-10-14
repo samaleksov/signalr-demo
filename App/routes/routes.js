@@ -57,6 +57,27 @@ export default {
 			//cb(null, Counter)
 		 	System.import( "../components/Slides").then(loadRoute(cb)).catch(errorLoading);
 		 }
+	 },
+	 {
+		 path: '/scalability',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/Scalability").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/sqldependency',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/SQLDependency").then(loadRoute(cb)).catch(errorLoading);
+		 }
+	 },
+	 {
+		 path: '/dashboard',
+		 getComponent(location, cb) {
+			//cb(null, Counter)
+		 	System.import( "../components/Dashboard").then(loadRoute(cb)).catch(errorLoading);
+		 }
 	 }
 	]
 };

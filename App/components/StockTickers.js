@@ -39,7 +39,7 @@ class StockTickers  extends React.Component {
 	}
 	componentWillUnmount = () => {
 		if(!!this.state.hub)
-			this.state.hub.off("updateTickers", this.updateTickers.bind(this));
+			this.state.hub.off("updateTickers", this.updateTickers);
 	}
 	loaded = (tickers) => {
 		if(!!this.state.hub){
@@ -62,8 +62,7 @@ class StockTickers  extends React.Component {
 		{
 			$.connection.hub.url = SIGNALR_URL;
 			this.state.hub = hub;
-			const updateTickers = this.updateTickers;
-			hub.on("updateTickers", updateTickers.bind(this));
+			hub.on("updateTickers", this.updateTickers);
 		}
 		this.loadData();
 	}

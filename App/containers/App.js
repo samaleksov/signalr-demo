@@ -12,11 +12,17 @@ import FormFields from 'grommet/components/FormFields';
 import CheckBox from 'grommet/components/CheckBox';
 import { SIGNALR_URL } from '../constants'
 import Image from 'grommet/components/Image';
+import Notification from 'grommet/components/Notification';
+import Button from 'grommet/components/Button';
+import Close from 'grommet/components/icons/base/Close';
+import moment from "moment"
 
 class App extends React.Component {
   state = {
     hub: null,
-    sync: false
+    messageHub: null,
+    sync: false,
+    messages: []
   }
   goHome = () => {
     this.props.router.push('/');
@@ -33,28 +39,68 @@ class App extends React.Component {
     if(this.state.sync)
       this.props.router.push(target);
   }
+  sendMessage = (message) => {
+    this.state.messageHub.server.sendMessage(message);
+  }
+  receiveMessage = (text) => {
+    const message = { text, timestamp: new Date() }
+    message.id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+    const messages = this.state.messages.concat(message);
+    this.setState({ ...this.state, messages });
+  }
+
+  removeNotification = (notification) => {
+    const messages = this.state.messages.filter(message => message.id !== notification.id);
+    this.setState({ ...this.state, messages });
+  }
+  messageKeyDown = (event) => {
+    if(event.keyCode === 13)
+    {
+      this.sendMessage(this.messageBox.value);
+      this.messageBox.value = "";
+    }
+  }
+  dummyFunction = () => {
+
+  }
   componentDidMount = () => {
-    console.log('mounting')
 		const hub = $.connection.navigation;
     const counterHub = $.connection.counters;
     const stocksHub =$.connection.stock;
-    stocksHub.on("updateTickers", () => { });
+    const messageHub = $.connection.message;
+    const dashHub = $.connection.dashboard;
 
-    console.log(stocksHub);
+    stocksHub.on("updateTickers", this.dummyFunction);
+    counterHub.on("updateCounter", this.dummyFunction);
+    dashHub.on("addStats", this.dummyFunction);
+    messageHub.on("receiveMessage", this.receiveMessage);
+
     if(!!hub)
     {
       $.connection.hub.url = SIGNALR_URL;
   		this.state.hub = hub;
-      $.connection.hub.start().done();
-      this.setState({ ...this.state, hub });
-      this.state.hub.on("navigate", this.navigate.bind(this));
+      $.connection.hub.start().done(() => {
+        stocksHub.off("updateTickers", this.dummyFunction);
+        counterHub.off("updateCounter", this.dummyFunction);
+        dashHub.off("addStats", this.dummyFunction);
+  		})
+      this.setState({ ...this.state, hub, messageHub });
+      this.state.hub.on("navigate", this.navigate);
     }
+    this.messageBox.addEventListener("keydown", this.messageKeyDown, false);
+    setInterval(this.updateMessages, 10000);
 	}
 	componentWillUnmount = () => {
-    console.log("component will unmount");
     if(!!this.state.hub)
-		  this.state.hub.off("navigate", this.navigate.bind(this));
+		  this.state.hub.off("navigate", this.navigate);
 	}
+  updateMessages = () => {
+    const messages = this.state.messages.map(msg => msg);
+    this.setState({ ...this.state, messages })
+  }
   render () {
 
     const currentLocation = this.props.location.pathname;
@@ -65,6 +111,13 @@ class App extends React.Component {
        onNavigate: this.onNavigate
      })
     );
+
+    const notifications = this.state.messages.map((message) => {
+      return (
+        <Notification key={message.id} closer={<Button onClick={() => this.removeNotification(message)} icon={<Close />} />} status="ok" message={message.text + " | " + moment(message.timestamp).fromNow()}/>
+      )
+    });
+
     return (
       <GrommetApp inline={false} centered={!headerAndFooter}>
         <Box primary={true} full={true} pad="small">
@@ -75,12 +128,13 @@ class App extends React.Component {
             </div>
           </Header>
           <Box flex="grow">
-          {childrenWithProps}
+            {notifications}
+            {childrenWithProps}
           </Box>
           <div style={{ visibility: !headerAndFooter ? "visible" : "hidden"}}>
-            <Footer justify="between" colorIndex="brand" size="large" primary={true} pad={{"horizontal": "medium", "vertical" : "medium"}}>
+            <Footer justify="between" colorIndex="grey-1" size="large" primary={true} pad={{"horizontal": "medium", "vertical" : "medium"}}>
               <Box alignContent="stretch" flex={true}>
-                  <input name="sendText" type="text" />
+                  <input ref={(c) => this.messageBox = c} id="message" name="message" type="text"  />
               </Box>
             </Footer>
           </div>

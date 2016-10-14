@@ -27,7 +27,7 @@ class Counter  extends React.Component {
 		this.setState({ ...this.state, counter })
 	}
 	componentWillUnmount = () => {
-		this.state.hub.off("updateCounter", this.updateCounter.bind(this));
+		this.state.hub.off("updateCounter", this.updateCounter);
 	}
 	loaded = (counter) => {
 		const value = counter.Value;
@@ -50,7 +50,7 @@ class Counter  extends React.Component {
 		const counter = this.state.counter;
 		$.connection.hub.url = SIGNALR_URL;
 		this.state.hub = hub;
-		this.state.hub.on("updateCounter", this.updateCounter.bind(this));
+		hub.on("updateCounter", this.updateCounter);
 		this.loadData();
 	}
 	onDecrement = () => {
