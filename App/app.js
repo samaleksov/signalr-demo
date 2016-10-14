@@ -31,7 +31,7 @@ app.use((req, res, next) => {
       `<!DOCTYPE html>`,
       `<html>`,
         `<head>`,
-          `<title>SignalR Demo</title>`,
+          `<title>Tech Talks - SignalR</title>`,
           `<meta charset="utf-8"/>`,
           `<style>html, body, #root { height: 100%; } a { text-decoration: none !important; }'
           @-webkit-keyframes change-color {

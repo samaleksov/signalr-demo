@@ -21,24 +21,30 @@ class Slides  extends React.Component {
 		this.setState({ showNotification: false })
 	}
 	keyDown (event) {
-		 if(event.keyCode == 78)
+		 if(event.keyCode == 190 || event.keyCode == 78)
 		 {
-			 this.setState({ showNotification: !this.state.showNotification })
+			 this.setState({ showNotification: !this.state.showNotification });
+			 event.preventDefault();
+			 return false;
 		 }
 		 if(!!this.carousel)
 		 {
-			 if(event.keyCode == 39)
+			 if(event.keyCode == 34 || event.keyCode == 39)
 			 {
 				 this.carousel._slideNext();
+				 event.preventDefault();
+				 return false;
 			 }
-			 else if(event.keyCode == 37)
+			 else if(event.keyCode == 33 || event.keyCode == 37)
 			 {
 				 this.carousel._slidePrev();
+				 event.preventDefault();
+				 return false;
 			 }
 		 }
  	}
-  componentWillMount () {
-     window.document.addEventListener("keydown", this.keyDown.bind(this), false);
+  componentDidMount () {
+    window.document.addEventListener("keydown", this.keyDown.bind(this), false);
  	}
 	render () {
 		let notification = null;
@@ -62,6 +68,41 @@ class Slides  extends React.Component {
 			<Box full={true} primary={true}>
 				{ notification }
 				<Carousel ref={(c) => this.carousel = c} autoplay={false} persistentNav={false} >
+					<Hero colorIndex="ok">
+						<Box>
+							<Image src="/sqlsat538_header.png" size="medium" fit="contain" alt="SQLSaturday" />
+						</Box>
+						<Box>
+							<Image src="/techtalks.png" size="medium" fit="contain" alt="SQLSaturday" />
+						</Box>
+						<span style={{color: "White"}}>
+							<h1>
+								Sam Aleksov
+							</h1>
+							<h3>
+								@samaleksov | samuil_aleksov@epam.com
+							</h3>
+						</span>
+						<span style={{color: "White"}}>
+							<h1>
+								Petar Marinov
+							</h1>
+							<h3>
+								petar_marinov@epam.com
+							</h3>
+						</span>
+					</Hero>
+					<Hero colorIndex="ok">
+						<h1 style={{color: "White"}}>
+							 #sqlsatSofia
+						</h1>
+						<h1 style={{color: "White"}}>
+							 #sqlsat538
+						</h1>
+						<h1 style={{color: "White"}}>
+							 #sqlpass
+						</h1>
+					</Hero>
 					<Hero backgroundImage="/iStock_000065756809_Large_2.jpg">
 						<h1>
 							Crafting killer real time apps with SignalR and SQL Server
@@ -93,10 +134,41 @@ class Slides  extends React.Component {
 							</h1>
 						</Box>
 					</Hero>
+					<Hero>
+						<Box size="xsmall">
+						</Box>
+					</Hero>
+					<Box align="center" alignSelf="center" size="xxlarge" colorIndex="light-1">
+						<h1>
+							The big picture
+						</h1>
+						<Image src="/what_is_signalr_invocation.png" size="large" fit="contain" alt="The big picture" />
+					</Box>
+					<Box align="center" alignSelf="center" size="xxlarge" colorIndex="light-1">
+						<h1>
+							In depth look
+						</h1>
+						<Image src="intro_architecture.png" size="large" fit="contain" alt="Architecture" />
+					</Box>
+					<Hero backgroundImage="/iStock_82972681_web.jpg">
+						<h1>
+							The code
+						</h1>
+					</Hero>
 					<Hero backgroundImage="/iStock_82972681_web.jpg">
 						<h1>
 							Demo time
 						</h1>
+					</Hero>
+					<Hero colorIndex="ok">
+						<span style={{color: "White"}}>
+							<h1>
+								Thank you!
+							</h1>
+							<h3>
+								<a href="https://github.com/l337h4x0r/signalr-demo">https://github.com/l337h4x0r/signalr-demo</a>
+							</h3>
+						</span>
 					</Hero>
 				</Carousel>
 			</Box>
