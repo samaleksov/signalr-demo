@@ -23,13 +23,21 @@ class Slides  extends React.Component {
 		this.setState({ showNotification: false })
 	}
 	startPoison () {
-		const interval = setInterval(this.poisonTick, 1000);
+		const interval = setInterval(this.poisonTick, 600);
 		this.setState({ ...this.state, interval });
 	}
 	poisonTick = () => {
 		if(this.state.interval != null)
 		{
 			let notifications = this.state.notifications + 1;
+			try {
+				var audio = new Audio('/notification.mp3');
+				audio.play();
+			} catch (e) {
+
+			} finally {
+
+			}
 			this.setState({ ...this.state, notifications });
 		}
 	}
@@ -46,6 +54,17 @@ class Slides  extends React.Component {
 		 }
 		 if(event.keyCode == 190 || event.keyCode == 78)
 		 {
+			 if(!this.state.showNotification)
+			 {
+					try {
+						var audio = new Audio('/notification.mp3');
+						audio.play();
+					} catch (e) {
+
+					} finally {
+
+					}
+			 }
 			 this.setState({ showNotification: !this.state.showNotification });
 			 event.preventDefault();
 			 return false;
