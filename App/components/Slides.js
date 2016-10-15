@@ -144,7 +144,7 @@ class Slides  extends React.Component {
 			<Box full={true} primary={true}>
 				{ notification }
 				{ notifications }
-				<Carousel ref={(c) => this.carousel = c} autoplay={false} persistentNav={false} >
+				<Carousel infinite={false} ref={(c) => this.carousel = c} autoplay={false} persistentNav={false} >
 					<Hero colorIndex="ok">
 						<Box>
 							<Image src="/sqlsat538_header.png" size="medium" fit="contain" alt="SQLSaturday" />
@@ -157,7 +157,7 @@ class Slides  extends React.Component {
 								Sam Aleksov
 							</h1>
 							<h3>
-								@samaleksov | sam@refractiondevelopment.com
+								@samaleksov | samuil_aleksov@epam.com
 							</h3>
 						</span>
 						<span style={{color: "White"}}>
@@ -235,6 +235,22 @@ class Slides  extends React.Component {
 					<Hero backgroundImage="/iStock_82972681_web.jpg">
 						<h1>
 							Demo time
+						</h1>
+					</Hero>
+					<Hero colorIndex="ok">
+						<h1 style={{color: "White"}}>
+							 Q & A
+						</h1>
+					</Hero>
+					<Hero colorIndex="ok">
+						<Image src="/giphy.gif" size="large" alt="mindblown" />
+						<h1 style={{color: "White"}}>
+							 VB out of the box
+						</h1>
+					</Hero>
+					<Hero colorIndex="ok">
+						<h1 style={{color: "White"}}>
+							 Runs everywhere!
 						</h1>
 					</Hero>
 					<Hero colorIndex="ok">
