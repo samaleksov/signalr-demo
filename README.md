@@ -23,7 +23,7 @@ Create two databases (one for each backend example) and change the connection st
 - Navigate to http://localhost:5001/api/Counters
 
 ## Client
-- Go to the Apps directory and run __npm install__
+- Go to the Apps directory and run __npm install && npm start__
 - Navigate to http://localhost:3333
 - You can configure the API in use by changing the port in __constants.js__
 - The client is written against the ASP.NET 4.6.1 example so some components might not work (You're more than welcome to fix it)
